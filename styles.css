@@ -1,16 +1,15 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    background-color: #f2f2f2;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f0f0f0;
 }
 
 #game-container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 20px auto;
-    background-color: #fff;
     padding: 20px;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -20,81 +19,42 @@ h1 {
 }
 
 #money {
-    color: #28a745;
-    font-size: 18px;
-}
-
-#click-box {
-    display: inline-block;
-    padding: 20px;
-    margin: 10px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-#click-box:hover {
-    background-color: #0056b3;
-}
-
-#buttons-container {
-    margin-top: 20px;
-}
-
-.action-button {
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.action-button:hover {
-    background-color: #0056b3;
-}
-
-#car-container {
-    display: inline-block;
-    margin-top: 20px;
-}
-
-#car-image {
-    width: 50px;  /* Ajusta el tamaño de la imagen según tus necesidades */
-    height: auto;
-}
-
-#car-list {
-    margin-top: 20px;
-    text-align: left;
-}
-
-#car-list h3 {
-    color: #333;
-}
-
-#car-list p {
-    color: #555;
-    display: flex;
-    align-items: center;
     margin-bottom: 10px;
+    font-size: 18px;
+    color: #007bff;
 }
 
-#car-list img {
-    margin-left: 10px;
+#game-title {
+    cursor: pointer;
+    position: relative;
+}
+
+#game-title .cheat-code-hidden {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: transparent;
+    pointer-events: none;
+}
+
+#game-title:hover .cheat-code-hidden {
+    color: initial;
+}
+
+#cheat-menu {
+    margin-top: 20px;
+}
+
+#cheat-menu label,
+#cheat-menu input {
+    margin-bottom: 10px;
+    display: block;
 }
 
 #buttons-container button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     margin: 5px;
     cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -102,13 +62,66 @@ h1 {
 }
 
 #buttons-container button:hover {
+    background-color: #4CAF50; /* Cambia a tu color de fondo hover preferido */
+    color: white; /* Cambia a tu color de texto hover preferido */
+}
+
+button.action-button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button.action-button:hover {
     background-color: #0056b3;
 }
 
-#cheat-menu {
+#adjust-car-button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#adjust-car-button:hover {
+    background-color: #218838;
+}
+
+#click-box {
+    padding: 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#car-list {
     margin-top: 20px;
 }
 
-#cheat-menu label, #cheat-menu input {
+#car-list div {
     margin-bottom: 10px;
+}
+
+#car-list img {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+#buttons-container {
+    margin-top: 20px;
 }

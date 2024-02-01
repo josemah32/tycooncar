@@ -6,14 +6,10 @@
     <link rel="stylesheet" href="styles.css">
     <title>Car Tycoon Game</title>
 </head>
-
 <body>
     <div id="game-container">
-        <h1>Car Tycoon Game</h1>
+        <h1 id="game-title" onclick="toggleCheatMenu()">Car Tycoon Game<span id="cheat-trigger" class="cheat-code-hidden">C</span></h1>
         <p id="money">Money: $0</p>
-        
-        <!-- Botón para abrir el menú -->
-        <button class="action-button" onclick="openCheatMenu()">Open Cheat Menu</button>
         
         <!-- Menú de trucos (inicialmente oculto) -->
         <div id="cheat-menu" style="display: none;">
@@ -21,6 +17,8 @@
             <input type="text" id="cheat-code" placeholder="Type cheat code here">
             <button class="action-button" onclick="applyCheatCode()">Apply Code</button>
         </div>
+        
+        <button id="adjust-car-button" class="action-button" onclick="adjustCar()">Adjust Car</button>
         
         <div id="click-box" onclick="generateMoneyOnClick()">Click to Generate Money</div>
         <div id="car-list">

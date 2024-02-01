@@ -1,65 +1,103 @@
-let money = 100000;
-let carsOwned = 0;
+let money = 1000000;
 let carList = [];
+let baseCarPrice = 5000;  // Precio base del primer coche
+let adjustmentCost = 500;  // Costo de ajuste del coche
 
-function updateMoney() {
-    document.getElementById("money").innerText = `Money: $${money}`;
-}
-
-function updateCarList() {
-    const carListContainer = document.getElementById("car-list");
-    carListContainer.innerHTML = "<h3>Cars Owned:</h3>";
-
-    for (let i = 0; i < carList.length; i++) {
-        const car = carList[i];
-        const carItem = document.createElement("div");
-        carItem.innerHTML = `<p>${car.name} - Value: $${car.value}</p>`;
-
-        // Agrega la imagen del coche
-        const carImage = document.createElement("img");
-        carImage.src = "car.png";  // Ajusta la ruta de la imagen según tu estructura de archivos
-        carImage.alt = "Car Image";
-        carImage.style.width = "50px";  // Ajusta el tamaño según tus necesidades
-
-        carItem.appendChild(carImage);
-        carListContainer.appendChild(carItem);
-    }
-}
-
+// Función para comprar un coche
 function buyCar() {
-    const carPrice = 1000;
-    if (money >= carPrice) {
-        money -= carPrice;
-        carsOwned++;
+    const newCar = {
+        id: carList.length + 1,
+        name: "Car " + (carList.length + 1), // Asignar un nombre al coche
+        value: baseCarPrice + (carList.length * 1000),  // Precio aumenta con cada compra
+        image: "default_car_image.png"  // Imagen predeterminada del coche
+    };
 
-        // Add the purchased car to the list
-        const newCar = {
-            name: `Car ${carsOwned}`,
-            value: 5000  // You can set an initial value for the car
-        };
-        carList.push(newCar);
+    carList.push(newCar);
+    money -= newCar.value;
 
-        updateMoney();
-        updateCarList();
-    } else {
-        alert("Not enough money to buy a car!");
-    }
+    updateMoney();
+    updateCarList();
 }
 
+// Función para vender un coche
 function sellCar() {
-    const carPrice = 500;
-    if (carsOwned > 0) {
-        money += carPrice;
-        carsOwned--;
-
-        // Remove the last car from the list (you can implement logic to choose which car to sell)
+    if (carList.length > 0) {
         const soldCar = carList.pop();
+        money += soldCar.value * 0.8;  // Vender el coche con un descuento del 20%
 
+        alert(`Sold ${soldCar.name} for $${soldCar.value * 0.8}.`);
         updateMoney();
         updateCarList();
     } else {
         alert("You don't own any cars to sell!");
     }
+}
+
+// Función para ajustar un coche
+function adjustCar() {
+    const selectedCar = carList[carList.length - 1];  // Seleccionar el último coche comprado
+
+    if (carList.length > 0) {
+        // Verificar si el coche ya ha sido mejorado
+        if (!selectedCar.upgraded) {
+            selectedCar.image = "upgraded_car_image.png";
+            selectedCar.upgraded = true;  // Marcar que el coche ha sido mejorado
+        }
+
+        // Puedes permitir al jugador ajustar diversas propiedades aquí
+        selectedCar.value += 1000;
+
+        // Restar el costo del ajuste
+        money -= adjustmentCost;
+
+        alert(`Adjusted ${selectedCar.name}! New value: $${selectedCar.value}. You were charged $${adjustmentCost}.`);
+        updateMoney();
+        updateCarList();
+    } else {
+        alert("You don't own any cars to adjust!");
+    }
+}
+
+// Función para actualizar el dinero en el DOM
+function updateMoney() {
+    const moneyElement = document.getElementById("money");
+    moneyElement.textContent = `Money: $${money}`;
+}
+
+// Función para actualizar la lista de coches en el DOM
+function updateCarList() {
+    const carListElement = document.getElementById("car-list");
+    carListElement.innerHTML = "";
+
+    carList.forEach(car => {
+        const carDiv = document.createElement("div");
+        const carImage = car.image || "default_car_image.png";  // Usar imagen predeterminada si no hay una específica
+        carDiv.innerHTML = `<img src="${carImage}" alt="Car Image" style="width: 50px; height: 30px; margin-right: 10px;"> ${car.name} - Value: $${car.value}`;
+        carListElement.appendChild(carDiv);
+    });
+}
+
+// Función para actualizar el dinero en el DOM
+function updateMoney() {
+    const moneyElement = document.getElementById("money");
+    moneyElement.textContent = `Money: $${money}`;
+}
+
+// Función para actualizar la lista de coches en el DOM
+function updateCarList() {
+    const carListElement = document.getElementById("car-list");
+    carListElement.innerHTML = "";
+
+    carList.forEach(car => {
+        const carDiv = document.createElement("div");
+        carDiv.innerHTML = `<img src="car_image.png" alt="Car Image" style="width: 50px; height: 30px; margin-right: 10px;"> ${car.name} - Value: $${car.value}`;
+        carListElement.appendChild(carDiv);
+    });
+}
+
+function toggleCheatMenu() {
+    const cheatMenu = document.getElementById("cheat-menu");
+    cheatMenu.style.display = cheatMenu.style.display === "none" ? "block" : "none";
 }
 
 function generateMoneyOnClick() {
@@ -89,6 +127,7 @@ function applyCheatCode() {
     const cheatMenu = document.getElementById("cheat-menu");
     cheatMenu.style.display = "none";
 }
+
 
 // Initial setup
 updateMoney();
