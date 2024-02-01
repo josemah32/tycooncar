@@ -1,4 +1,4 @@
-let money = 1000000;
+let money = 0;
 let carList = [];
 let baseCarPrice = 5000;  // Precio base del primer coche
 let adjustmentCost = 500;  // Costo de ajuste del coche
